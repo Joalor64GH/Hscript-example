@@ -38,6 +38,10 @@
 
 	<haxelib name="flixel" />
 
+	<haxelib name="hxCodec" />
+	<haxelib name="hxvm-lua" />
+	<haxelib name="linc_luajit" />
+
     	<haxelib name="hscript" />
     	<haxelib name="HornyScript" />
 

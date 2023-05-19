@@ -25,7 +25,10 @@ jobs:
           haxelib run lime setup flixel
           haxelib run lime setup
           haxelib install hscript
+          haxelib install hxCodec
           haxelib git HornyScript https://github.com/Joalor64GH/HornyScript-RE
+          haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit
+          haxelib git hxvm-lua https://github.com/kevinresol/hxvm-lua
           haxelib list
         shell: cmd
       - name: Create Version Tag
