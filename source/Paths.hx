@@ -16,11 +16,6 @@ class Paths
 		return path;
 	}
 
-        inline static public function script(key:String)
-	{
-		return file('data/$key.hx');
-	}
-
 	inline static public function image(key:String)
 	{
 		return file('images/$key.png');
