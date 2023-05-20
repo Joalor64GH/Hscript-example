@@ -20,7 +20,7 @@ class PlayState extends FlxState
 		{
 			hscript = new HornyScript("assets/data/script.hx");
 			hscript.run();
-        	hscript.executeFunc("new");
+        		hscript.executeFunc("new");
 		}
 		catch (e)
 		{
@@ -46,7 +46,7 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 
-		script.executeFunc("update", [elapsed]);
-		script.executeFunc("updatePost", [elapsed]);
+		hscript.executeFunc("update", [elapsed]);
+		hscript.executeFunc("updatePost", [elapsed]);
 	}
 }
