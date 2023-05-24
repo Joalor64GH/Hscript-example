@@ -10,17 +10,24 @@ import horny.*;
 
 class PlayState extends FlxState
 {
+	public static var instance:PlayState = null;
+
 	var hscript:HornyScript;
 
 	public function new() 
 	{
 		super();
+        hscript.executeFunc("new");
+	}
+
+	override public function create()
+	{
+		instance = this;
 
 		try
 		{
 			hscript = new HornyScript("assets/data/script.hx");
 			hscript.run();
-        		hscript.executeFunc("new");
 		}
 		catch (e)
 		{
@@ -28,13 +35,10 @@ class PlayState extends FlxState
         		errText.screenCenter();
         		add(errText);
 		}
-	}
 
-	override public function create()
-	{
 		var coolText:FlxText = new FlxText(5, FlxG.height - 44, 0, "Hello World", 22);
 		coolText.scrollFactor.set();
-		coolText.setFormat("VCR OSD Mono", 26, 0xFFffffff, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		coolText.setFormat(Paths.font('comic.ttf'), 26, 0xFFffffff, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(coolText);
 
 		super.create();

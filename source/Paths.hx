@@ -20,4 +20,9 @@ class Paths
 	{
 		return file('images/$key.png');
 	}
+
+	inline static public function font(key:String)
+	{
+		return 'assets/fonts/$key';
+	}
 }  

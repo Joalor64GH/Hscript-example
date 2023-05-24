@@ -1,5 +1,6 @@
 // imports
 import('Paths');
+import('PlayState');
 import('flixel.FlxG');
 import('flixel.FlxSprite');
 
@@ -12,6 +13,7 @@ function new() {}
 // create function
 function create() {
     sprite = new FlxSprite().loadGraphic(Paths.image('image'));
+    PlayState.instance.add(sprite);
 }
 
 // update function
