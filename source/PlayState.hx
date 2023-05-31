@@ -17,24 +17,23 @@ class PlayState extends FlxState
 	public function new() 
 	{
 		super();
-        hscript.executeFunc("new");
+		try {
+        	hscript = new HornyScript("assets/data/script.hx");
+        	hscript.setVariable("add", function(obj:FlxBasic) {add(obj);});
+        	hscript.setVariable("remove", function(obj:FlxBasic) {remove(obj);});
+        	hscript.setVariable("insert", function(i:Int, obj:FlxBasic) {insert(i, obj);});
+        	hscript.run();
+        	hscript.executeFunc("new", args);
+		} catch(e) {
+			var errText:FlxText = new FlxText(0, 0, 0, "Oops! There was an error with the script!" + "\n" + e.message, 64);
+        	errText.screenCenter();
+        	add(errText);
+		}
 	}
 
 	override public function create()
 	{
 		instance = this;
-
-		try
-		{
-			hscript = new HornyScript("assets/data/script.hx");
-			hscript.run();
-		}
-		catch (e)
-		{
-			var errText:FlxText = new FlxText(0, 0, 0, "Oops! There was an error with the script!" + "\n" + e.message, 64);
-        		errText.screenCenter();
-        		add(errText);
-		}
 
 		var coolText:FlxText = new FlxText(5, FlxG.height - 44, 0, "Hello World", 22);
 		coolText.scrollFactor.set();
