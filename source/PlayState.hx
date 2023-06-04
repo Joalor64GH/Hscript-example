@@ -5,30 +5,25 @@ import flixel.text.FlxText;
 import flixel.FlxState;
 import flixel.FlxBasic;
 import flixel.FlxG;
-import openfl.Lib;
 import horny.*;
 
 class PlayState extends FlxState
 {
 	public static var instance:PlayState = null;
 
-	var hscript:HornyScript;
+	public var hscript:HornyScript;
 
 	public function new() 
 	{
 		super();
-		try {
-        	hscript = new HornyScript("assets/data/script.hx");
-        	hscript.setVariable("add", function(obj:FlxBasic) {add(obj);});
-        	hscript.setVariable("remove", function(obj:FlxBasic) {remove(obj);});
-        	hscript.setVariable("insert", function(i:Int, obj:FlxBasic) {insert(i, obj);});
-        	hscript.run();
-        	hscript.executeFunc("new", args);
-		} catch(e) {
-			var errText:FlxText = new FlxText(0, 0, 0, "Oops! There was an error with the script!" + "\n" + e.message, 64);
-        	errText.screenCenter();
-        	add(errText);
-		}
+		
+        hscript = new HornyScript("main.hx");
+		hscript.setVariable("state", this);
+        hscript.setVariable("add", function(obj:FlxBasic) {add(obj);});
+        hscript.setVariable("remove", function(obj:FlxBasic) {remove(obj);});
+        hscript.setVariable("insert", function(i:Int, obj:FlxBasic) {insert(i, obj);});
+        hscript.run();
+        hscript.executeFunc("new");
 	}
 
 	override public function create()
